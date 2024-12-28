@@ -167,9 +167,9 @@
 <div class="container">
     <div class="contents">
         <p class="top_logo"><img src="https://www.president.go.kr/assets/images/common/logo-navy.svg" alt="대통령실 로고 이미지"></p>
-        <h3><span>[</span> 대통령(윤석열)을 찾을 수 없습니다 <span>]</span></h3>
+        <h3><span>[</span> 윤석열을 더이상 찾을 수 없습니다 <span>]</span></h3>
         <span class="text">
-            입력하신 대통령을 찾을 수 없거나 서비스 연결 오류일 수 있습니다.<br>
+            입력하신 인물물을 찾을 수 없거나 서비스 연결 오류일 수 있습니다.<br>
             검색어를를 확인하신 후 다시 이용해 주시기 바랍니다.
         </span>
         <span class="text txt">감사합니다.</span>
@@ -190,126 +190,12 @@
 </div>
 
 <script>
-    const SERVER_URL = "http://localhost:5000";
-    const commentsContainer = document.getElementById('comments');
-    const announcementElement = document.getElementById('announcement');
-    const adminAnnouncementElement = document.getElementById('adminAnnouncement');
-    let isAdminVerified = false;
-
     // 다크모드 토글
     const toggleModeBtn = document.getElementById('toggleMode');
     toggleModeBtn.addEventListener('click', () => {
         document.body.classList.toggle('dark-mode');
         toggleModeBtn.textContent = document.body.classList.contains('dark-mode') ? '라이트모드' : '다크모드';
     });
-
-    async function loadCommentsFromServer() {
-        try {
-            const response = await fetch(`${SERVER_URL}/get-comments`);
-            const comments = await response.json();
-            renderComments(comments);
-        } catch (error) {
-            console.error('댓글 불러오기 오류:', error);
-        }
-    }
-
-    async function saveCommentToServer() {
-        const nickname = document.getElementById('nicknameInput').value;
-        const comment = document.getElementById('commentInput').value;
-
-        if (!nickname || !comment) {
-            alert('닉네임과 댓글을 모두 입력해주세요.');
-            return;
-        }
-
-        try {
-            await fetch(`${SERVER_URL}/save-comment`, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ nickname, comment })
-            });
-            loadCommentsFromServer();
-        } catch (error) {
-            console.error('댓글 저장 오류:', error);
-        }
-    }
-
-    async function deleteComment(index) {
-        if (!isAdminVerified) {
-            alert('관리자 권한이 필요합니다.');
-            return;
-        }
-
-        try {
-            await fetch(`${SERVER_URL}/delete-comment`, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ index })
-            });
-            loadCommentsFromServer();
-        } catch (error) {
-            console.error('댓글 삭제 오류:', error);
-        }
-    }
-
-    function renderComments(comments) {
-        commentsContainer.innerHTML = ''; // 기존 댓글 초기화
-        comments.forEach((comment, index) => {
-            const commentElement = document.createElement('div');
-            commentElement.className = 'comment';
-            commentElement.innerHTML = `
-                <span class="nickname">${comment.nickname}</span>: 
-                <span>${comment.comment}</span>
-                <span class="delete-btn" onclick="deleteComment(${index})" style="display: ${isAdminVerified ? 'inline' : 'none'};">삭제</span>
-            `;
-            commentsContainer.appendChild(commentElement);
-        });
-    }
-
-    async function loadAnnouncementFromServer() {
-        try {
-            const response = await fetch(`${SERVER_URL}/get-announcement`);
-            const { announcement } = await response.json();
-            announcementElement.textContent = `관리자 공지: ${announcement}`;
-        } catch (error) {
-            console.error('공지 불러오기 오류:', error);
-        }
-    }
-
-    async function updateAnnouncementToServer() {
-        const newAnnouncement = document.getElementById('announcementInput').value;
-        if (!newAnnouncement) {
-            alert('공지 내용을 입력해주세요.');
-            return;
-        }
-
-        try {
-            await fetch(`${SERVER_URL}/update-announcement`, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ announcement: newAnnouncement })
-            });
-            loadAnnouncementFromServer();
-        } catch (error) {
-            console.error('공지 업데이트 오류:', error);
-        }
-    }
-
-    function verifyAdminCode() {
-        const adminCodeInput = document.getElementById('adminCodeInput').value.trim();
-        if (adminCodeInput === 'admin1234') {
-            isAdminVerified = true;
-            alert('관리자 권한이 확인되었습니다.');
-            adminAnnouncementElement.style.display = 'block'; // 관리자 공지 작성 영역을 보이게 함
-            loadCommentsFromServer();  // 관리자 인증 후 댓글 목록을 다시 불러오기
-        } else {
-            alert('관리자 코드가 올바르지 않습니다.');
-        }
-    }
-
-    // 초기 데이터 로드
-    loadCommentsFromServer();
-    loadAnnouncementFromServer();
 </script>
 
 </body>
