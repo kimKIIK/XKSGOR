@@ -15,110 +15,68 @@
     <meta property="og:image" content="https://www.president.go.kr/thumb_img_new.jpg">
 
     <style>
-        html,body,div,p,a,span,ul,li,h3{
-            margin:0;
-            padding:0;
+        html, body {
+            margin: 0;
+            padding: 0;
             font-family: 'Pretendard', sans-serif;
         }
-        a{text-decoration:none;}
-        .container{
+        a {
+            text-decoration: none;
+        }
+        .container {
             width: 100%;
             height: auto;
             display: table;
         }
-        .contents{
-            position: relative;
+        .contents {
             display: table-cell;
             vertical-align: middle;
             width: 100%;
-            margin: 0 auto;
             text-align: center;
         }
-        .contents .top_logo{
-            display:block;
-            max-width: 469px;
-            margin: 0 auto 60px auto;
-        }
-
         .contents .top_logo img {
-            width:50%;
-            height:auto;
+            width: 30%;
+            height: auto;
         }
-
-        .contents h3{
+        .contents h3 {
             font-size: 64px;
             margin-bottom: 15px;
-            letter-spacing: -0.5px; /* 글자 간격 줄임 */
-            line-height: 1.2; /* 줄 간격 조정 */
+            letter-spacing: -0.5px;
+            line-height: 1.2;
         }
-        .contents h3 span{color:#ccc;}
-        .contents .text{
+        .contents h3 span {
+            color: #ccc;
+        }
+        .contents .text {
             font-size: 21px;
             color: #585858;
-            letter-spacing: -0.4px; /* 글자 간격 줄임 */
-            line-height: 1.4; /* 줄 간격 조정 */
+            letter-spacing: -0.4px;
+            line-height: 1.4;
         }
-        .contents .text.txt{
-            display: block;
-            margin-top: 15px; /* 여백 줄임 */
-        }
-        .contents .btn{
-            text-align: center;
-            margin-top: 40px;
-        }
-        .contents .btn a{
+        .contents .btn a {
             font-size: 16px;
             background-color: #082e59;
             color: #fff;
             width: 300px;
             display: block;
-            margin: 0 auto;
+            margin: 40px auto 0 auto;
             height: 45px;
             line-height: 42px;
             border-radius: 5px;
             cursor: not-allowed;
         }
-
         .comment-section {
-            margin-top: 50px;
+            margin: 50px auto 0 auto;
             text-align: left;
             width: 80%;
-            margin-left: auto;
-            margin-right: auto;
         }
         .comment-section h4 {
             font-size: 24px;
             margin-bottom: 20px;
         }
-        .comment-section .comment {
-            margin-bottom: 10px; /* 기존 15px에서 줄임 */
-            border-bottom: 1px solid #ddd;
-            padding-bottom: 5px; /* 간격 축소 */
-            display: flex;
-            justify-content: space-between;
-            align-items: center; /* 세로 정렬 조정 */
-        }
-        .comment-section .comment span.nickname {
-            font-weight: bold;
-            color: #082e59;
-        }
-        .comment-section .delete-btn {
-            color: red;
-            cursor: pointer;
-            font-size: 12px;
-            display: inline; /* 항상 표시 */
-        }
         .comment-section textarea {
             width: 100%;
-            margin-top: 10px;
             height: 100px;
-            padding: 10px;
-            font-size: 14px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-        }
-        .comment-section input {
-            margin-top: 10px;
             padding: 10px;
             font-size: 14px;
             border: 1px solid #ddd;
@@ -144,10 +102,6 @@
             font-size: 16px;
             font-weight: bold;
         }
-        .comment-section .admin-announcement {
-            display: none;
-            margin-top: 20px;
-        }
         body {
             background-color: #fff;
             color: #000;
@@ -169,10 +123,10 @@
         <p class="top_logo"><img src="https://www.president.go.kr/assets/images/common/logo-navy.svg" alt="대통령실 로고 이미지"></p>
         <h3><span>[</span> 윤석열을 더이상 찾을 수 없습니다 <span>]</span></h3>
         <span class="text">
-            입력하신 인물물을 찾을 수 없거나 서비스 연결 오류일 수 있습니다.<br>
+            입력하신 인물을 찾을 수 없거나 서비스 연결 오류일 수 있습니다.<br>
             검색어를를 확인하신 후 다시 이용해 주시기 바랍니다.
         </span>
-        <span class="text txt">감사합니다.</span>
+        <span class="text">감사합니다.</span>
 
         <p class="btn"><a href="#">윤석열 탄핵 시위하러 바로가기</a></p>
     </div>
@@ -182,10 +136,6 @@
     <button class="submit-btn" id="toggleMode">다크모드</button>
     <div class="announcement" id="announcement">
         관리자 공지: 개인 운영사이트임을 알려드리며 이유없이 삭제되거나 변경될수 있음을 알려드립니다. (2024-12-28 09:30:00).
-    </div>
-    <div class="admin-announcement" id="adminAnnouncement">
-        <textarea id="announcementInput" placeholder="공지 내용을 작성하세요"></textarea>
-        <button class="submit-btn" onclick="updateAnnouncementToServer()">공지 등록</button>
     </div>
 </div>
 
