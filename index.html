@@ -187,18 +187,6 @@
         <textarea id="announcementInput" placeholder="공지 내용을 작성하세요"></textarea>
         <button class="submit-btn" onclick="updateAnnouncementToServer()">공지 등록</button>
     </div>
-
-    <h4>댓글 작성</h4>
-    <p style="font-size: 12px; color: #888;">부적절한 댓글 (욕설, 도배, 심한 비하발언 등)은 관리자의 의해 삭제될 수 있습니다.</p>
-    <textarea id="commentInput" placeholder="댓글을 입력하세요"></textarea>
-    <input id="nicknameInput" type="text" placeholder="닉네임을 입력하세요">
-    <div style="display: flex; align-items: center; gap: 10px; margin-top: 10px;">
-        <input id="adminCodeInput" type="password" placeholder="관리자 코드를 입력하세요" style="padding: 10px; font-size: 14px; border: 1px solid #ddd; border-radius: 5px;">
-        <button class="submit-btn" onclick="verifyAdminCode()">관리자 코드</button>
-    </div>
-    <button class="submit-btn" onclick="saveCommentToServer()" style="margin-top: 10px;">댓글 작성</button>
-
-    <div id="comments" style="margin-top: 20px;"></div>
 </div>
 
 <script>
